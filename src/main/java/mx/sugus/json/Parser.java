@@ -16,6 +16,9 @@ public class Parser {
 
   private final Tokenizer tokenizer;
 
+  public Parser(Reader reader) {
+    this.tokenizer = new Tokenizer(reader);
+  }
 
   public Parser(String json) {
     this.tokenizer = new Tokenizer(json);

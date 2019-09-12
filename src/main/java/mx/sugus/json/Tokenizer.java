@@ -11,16 +11,14 @@ import java.io.IOException;
 public class Tokenizer {
 
   private final Reader reader;
-  private final String source;
   private int lookahead = -2;
 
-  public Tokenizer(String source, Reader reader) {
-    this.source = source;
+  public Tokenizer(Reader reader) {
     this.reader = reader;
   }
 
   public Tokenizer(String json) {
-    this("<user input>", new StringReader(json));
+    this(new StringReader(json));
   }
 
   public Token next() {
