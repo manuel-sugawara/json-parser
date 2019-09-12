@@ -22,40 +22,8 @@ public class Parser {
   }
 
   public Object parse() {
-    Object value = parseOneValue();
+    Object value = parseOneValue(next());
     consume("json value", Type.EOF);
-    return value;
-  }
-
-  private Object parseOneValue() {
-    Token token = next();
-    Object value;
-    switch (token.getType()) {
-      case DOUBLE:
-      case LONG:
-        value = toValue(token);
-        break;
-      case STRING:
-        value = token.getValue();
-        break;
-      case NULL:
-        value = null;
-        break;
-      case TRUE:
-        value = true;
-        break;
-      case FALSE:
-        value = false;
-        break;
-      case START_LIST:
-        value = parseList();
-        break;
-      case START_MAP:
-        value = parseMap();
-        break;
-      default:
-        throw parseError("json value", "value", token);
-    }
     return value;
   }
 
